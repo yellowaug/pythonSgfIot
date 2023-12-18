@@ -21,16 +21,16 @@ def requestActive():
     hd_typeid_kt=dev.PRECISION_AIR_CONDITIONER_MIDEA.value
     dev_type_kt="UNIT_TEMP_OUTDOOR"
     hd_name_kt="精密空调-美的-MAV013WT1N2S-电总QJF1350298-8-5-1"
-    # resp_kt=requestTo.requestDeviceData(acc_token,hd_typeid_kt,uri_devdata)
-    # requestTo.analyticalRequestsdata(response=resp_kt,dev_type=dev_type_kt,hd_name=hd_name_kt)
+    resp_kt=requestTo.requestDeviceData(acc_token,hd_typeid_kt,uri_devdata)
+    requestTo.analyticalRequestsdata(response=resp_kt,dev_type=dev_type_kt,hd_name=hd_name_kt)
     # requestTo.requeststo(uri,dev_type,hd_name,hd_typeid)
 
     #电量仪
-    hd_typeid_dly=dev.POWER_METER.value
-    dev_type_dly="INPUT_VOL_3"
-    hd_name_dly="电量仪"
-    resp_dly=requestTo.requestDeviceData(acc_token=acc_token,hd_typeid=hd_typeid_dly,uri=uri_devdata)
-    requestTo.analyticalRequestsdata(response=resp_dly,dev_type=dev_type_dly,hd_name=hd_name_dly)
+    # hd_typeid_dly=dev.SOUND_AND_LIGHT_ALARM.value
+    # dev_type_dly="SLA_CNT"
+    # hd_name_dly="声光报警"
+    # resp_dly=requestTo.requestDeviceData(acc_token=acc_token,hd_typeid=hd_typeid_dly,uri=uri_devdata)
+    # requestTo.analyticalRequestsdata(response=resp_dly,dev_type=dev_type_dly,hd_name=hd_name_dly)
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
