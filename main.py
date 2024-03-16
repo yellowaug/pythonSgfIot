@@ -1,15 +1,17 @@
+import os
+
 from RequestDevices import RequestsDeviceObj as rdo
 from DeviceInfo import Device as dev
 import time
+from dotenv import load_dotenv
 def requestActive():
     # Use a breakpoint in the code line below to debug your script.
     hd_typeid=dev.ROOM_TEMPERATURE_HUMIDITY_2.value
-
-
-    uri="/iotp/api/open/accessControl/accessToken/get"
-    uri_devdata="/iotp/api/open/deviceManagement/hardware/list"
-    host="10.11.17.244"
-    secretKey="2fe886a731177cedd3d8a7c400f3d773"
+    load_dotenv()
+    uri=os.getenv("URI")
+    uri_devdata=os.getenv("URI_DEVICE")
+    host=os.getenv("IOT_HOST")
+    secretKey=os.getenv("SECRETKEY")
     dev_type="DEV_MOISTURE"
     hd_name="配电柜温湿度1"
     requestTo = rdo(hostip=host)

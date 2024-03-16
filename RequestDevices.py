@@ -120,7 +120,8 @@ class RequestsDeviceObj:
         # response = self.__requestObj(req_data=data)
         # if response.status_code == 200:
         result_list = response.json()
-        print(f"传入的参数是{result_list}")
+        #调试的时候用这个
+        #print(f"传入的参数是{result_list}")
         # result_dict=json.loads(result)
         hard_list=result_list.get('data', {}).get('results', [])
         result=None
@@ -129,7 +130,8 @@ class RequestsDeviceObj:
             if hardwareName == hd_name:
                 # print(f"温度区域：{hd_name}")
                 states_list=hard.get('states', [])
-                print(f"得到的设备结果字符串是{states_list}")
+                # 调试的时候用这个
+                #print(f"得到的设备结果字符串是{states_list}")
                 for state in states_list: #解析从传感器获得的数据并打印
                     if state.get('stateID')==dev_type:
                         reported_value = state.get('reported')
