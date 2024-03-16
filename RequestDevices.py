@@ -91,7 +91,7 @@ class RequestsDeviceObj:
             print(f"Error: {response.status_code}, {response.text}")
     def analyticalRequestsdata(self,response,dev_type,hd_name):
         """
-        解析设备数据的方法。
+        解析设备获取的数据的方法。传入的是Json，这个方法其实就是解析Json字段
 
         Parameters:
         - response: 请求设备数据的响应对象。
@@ -120,54 +120,19 @@ class RequestsDeviceObj:
         # response = self.__requestObj(req_data=data)
         # if response.status_code == 200:
         result_list = response.json()
-        print(result_list)
+        print(f"传入的参数是{result_list}")
         # result_dict=json.loads(result)
         hard_list=result_list.get('data', {}).get('results', [])
+        result=None
         for hard in hard_list:
             hardwareName=hard.get('info',[]).get("hardwareName")
             if hardwareName == hd_name:
                 # print(f"温度区域：{hd_name}")
                 states_list=hard.get('states', [])
-                print(states_list)
+                print(f"得到的设备结果字符串是{states_list}")
                 for state in states_list: #解析从传感器获得的数据并打印
                     if state.get('stateID')==dev_type:
                         reported_value = state.get('reported')
-                        print(reported_value)
-                        # if dev_type=="DEV_MOISTURE":
-                        #     print(f"设备湿度: {reported_value}")
-                        # elif dev_type=="DEV_TEMPRATURE":
-                        #     print(f"设备温度: {reported_value}")
-
-
-                        #
-                        # if dev_type=="DEV_TEMPRATURE":
-                        #     reported_value = state.get('reported')
-                        #     print(f"设备温度: {reported_value}")
-                        # else:
-                        #     print(f"Error,传入的参数是：{states_list},{hd_name},")
-                    # print(state)
-                    # if hardwareName=="配电柜温湿度1":
-                    #     if state.get('stateID') == 'DEV_MOISTURE':
-                    #         reported_value = state.get('reported')
-                    #         print(f"设备湿度: {reported_value}")
-                    #     if state.get('stateID') == 'DEV_TEMPRATURE':
-                    #         reported_value = state.get('reported')
-                    #         print(f"设备温度: {reported_value}")
-                    # else:
-                    #     print(f"Error:{state}")
-        # else:
-        #     print(f"Error: {response.status_code}, {response.text}")
-        #     result_dict=response.json()
-
-
-        #     states_list = result_list.get('data', {}).get('results', [])[0].get('states', [])
-        #     for state in states_list:
-        #         print(state)
-        #         if state.get('stateID') == 'DEV_MOISTURE':
-        #             reported_value = state.get('reported')
-        #             print(f"设备湿度: {reported_value}")
-        #         if state.get('stateID') == 'DEV_TEMPRATURE':
-        #             reported_value = state.get('reported')
-        #             print(f"设备温度: {reported_value}")
-        # else:
-        #     print(f"Error: {response.status_code}, {response.text}")
+                        result=reported_value
+                        # print(f"获取到的最终数值是：{reported_value}")
+        return result
